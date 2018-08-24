@@ -17,7 +17,6 @@ public class MySQLAdsDao implements Ads {
             e.printStackTrace();
         }
 
-
     }
 
     @Override
@@ -28,7 +27,7 @@ public class MySQLAdsDao implements Ads {
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet rs = statement.executeQuery("SELECT * FROM adlister_db.ads");
+            ResultSet rs = statement.executeQuery("SELECT * FROM ads");
 
             while (rs.next()) {
 
@@ -48,7 +47,7 @@ public class MySQLAdsDao implements Ads {
         try {
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("INSERT INTO adlister_db.ads(user_id, title, description) VALUES (1, '" + ad.getTitle() + "', '" + ad.getDescription() + "')");
+            statement.executeUpdate("INSERT INTO ads(user_id, title, description) VALUES (1, '" + ad.getTitle() + "', '" + ad.getDescription() + "')");
 
         } catch (SQLException e) {
             e.printStackTrace();
