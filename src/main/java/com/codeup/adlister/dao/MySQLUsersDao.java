@@ -25,8 +25,12 @@ public class MySQLUsersDao implements Users{
         User user = new User();
 
         try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(String.format("SELECT * FROM users WHERE username = '%s'", username));
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE username = ?" ,Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setString(1, username);
+
+            ResultSet rs = stmt.executeQuery();
+
 
             user.setId(rs.getLong(1));
             user.setUsername(rs.getString(2));
